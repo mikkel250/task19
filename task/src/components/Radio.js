@@ -1,33 +1,36 @@
 import React from 'react';
 
-//Need to actually set the parent to control the state bc we want to not just show the checkbox is checked but change the display prop of the p tag.
-
-const RadioSelect = props => (
-    <input type="radio" />
-)
+function Content(props) {
+    if (props.checked) {
+        return <span>Can You See Me?</span>;
+    }
+    return null;
+}
 
 class ExampleApp extends React.Component {
-    state = { checked: false}
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+        this.state = { checked: false}
+    }
 
-    
     handleChange(event) {
         this.setState({
-            selected: event.target.checked
+            checked: event.target.value
         });
     }
 
     render() {
-        const content = this.state.checked ? null : <span>Can You See Me?</span>;
+        const selected = this.state.checked;
+        
         return (
-            <div>
-                <label>
-                    <RadioSelect
-                        checked={this.state.checked}
-                        onChange={this.handleChecboxChange}
-                    />
-                    
-                </label>
-                {content}
+            <div>                
+                <input
+                    type="radio"
+                    value={selected}
+                    onChange={this.handleChange}
+                    />                
+                <Content checked={selected} />
             </div>
         )
     }

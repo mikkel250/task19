@@ -5,7 +5,8 @@ import Calculator from './components/Converter.js';
 function App() {
   return (
     <div className="App">
-      <ExampleApp />
+      Click to show text: <ExampleApp />
+      <br />Currency Converter:
       <Calculator />
     </div>
   );
